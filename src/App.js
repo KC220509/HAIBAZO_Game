@@ -28,9 +28,16 @@ function App() {
       if (points < 1) {
         return;
       }
-      const shuffledNumbers = Array.from({ length: points }, (_, i) => i + 1).sort(
-        () => Math.random() - 0.5
-      );
+      // const shuffledNumbers = Array.from({ length: points }, (_, i) => i + 1).sort(
+      //   () => Math.random() - 0.5
+      // );
+
+      const shuffledNumbers = Array.from({ length: points }, (_, i) => ({
+        value: i + 1,
+        x: Math.random() * 90, // Random x position (percentage)
+        y: Math.random() * 90, // Random y position (percentage)
+      })).sort(() => Math.random() - 0.5);
+
       setNumbers(shuffledNumbers);
       setNextNumber(1);
       setMessage("LET'S PLAY");
@@ -47,9 +54,15 @@ function App() {
       if (points < 1) {
         return;
       }
-      const shuffledNumbers = Array.from({ length: points }, (_, i) => i + 1).sort(
-        () => Math.random() - 0.5
-      );
+      // const shuffledNumbers = Array.from({ length: points }, (_, i) => i + 1).sort(
+      //   () => Math.random() - 0.5
+      // );
+
+      const shuffledNumbers = Array.from({ length: points }, (_, i) => ({
+        value: i + 1,
+        x: Math.random() * 90, // Random x position (percentage)
+        y: Math.random() * 90, // Random y position (percentage)
+      })).sort(() => Math.random() - 0.5);
       setNumbers(shuffledNumbers);
       setNextNumber(1);
       setMessage("LET'S PLAY");
@@ -69,7 +82,7 @@ function App() {
         
         setTimeout(() => {
           setNumbers((prev) => {
-            const updatedNumber = prev.filter((n) => n !== num);
+            const updatedNumber = prev.filter((n) => n.value !== num);
             if (updatedNumber.length === 0) {
                 setMessage("ALL CLEARED!");
                 setTitle("green");
@@ -100,7 +113,7 @@ function App() {
         }
     
         const nextNum = nextNumber;
-        if (numbers.find((item) => item === nextNum)) {
+        if (numbers.find((item) => item.value === nextNum)) {
           handleClick(nextNum);
         }
       }, 1000);
@@ -152,11 +165,13 @@ function App() {
         <div className="game-board">
           {numbers.map((num) => (
             <button
-              className={`btn-circle  ${selectedNumber === num ? "active fade-out" : ""}`}
-              key={num}
-              onClick={() => handleClick(num)}
+              className={`btn-circle  ${selectedNumber === num.value ? "active fade-out" : ""}`}
+              key={num.value}
+              onClick={() => handleClick(num.value)}
+              style={{ top: `${num.y}%`, left: `${num.x}%`, zIndex: 100 - num.value }}
+              
             >
-              {num}
+              {num.value}
             </button>
           ))}
         </div>
