@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game-container{
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  
+}
+
+.game-content{
+
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  padding: 30px;
+  border: 2px solid black;
+  gap: 10px;
+}
+
+.title-game.green{
+  color: green;
+}
+
+.title-game.red{
+  color: red;
+}
+
+.points-box, .time-box{
+  gap: 50px;
+  align-items: center;
+
+}
+
+.points-box p, .time-box p{
+  min-width: 50px;
+}
+
+.points-box input{
+  border: 1px solid #5a5a5a;
+  padding: 3px 5px;
+
+}
+
+.btn-box{
+  gap: 20px;
+}
+
+.btn-box .btn{
+  padding: 3px 10px;
+  border: 1px solid #5a5a5a;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.game-board{
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.btn-circle{
+  /* position: absolute; */
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  background: white;
+  border: 2px solid rgb(192, 153, 55);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.btn-circle.active{
+  background: rgb(208, 146, 40);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
